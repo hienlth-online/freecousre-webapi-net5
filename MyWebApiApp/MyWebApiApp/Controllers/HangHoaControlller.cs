@@ -10,7 +10,7 @@ namespace MyWebApiApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HangHoaControlller : ControllerBase
+    public class HangHoaController : ControllerBase
     {
         public static List<HangHoa> hangHoas = new List<HangHoa>();
 
