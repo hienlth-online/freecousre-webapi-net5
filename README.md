@@ -1,2 +1,2 @@
-# freecousre-webapi-n-t
+# freecousre-webapi-net
 Free tutorial about WebAPI .NET 5
