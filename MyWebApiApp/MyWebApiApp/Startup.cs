@@ -41,6 +41,7 @@ namespace MyWebApiApp
 
             //services.AddScoped<ILoaiRepository, LoaiRepository>();
             services.AddScoped<ILoaiRepository, LoaiRepositoryInMemory>();
+            services.AddScoped<IHangHoaResposity, HangHoaRepository>();
 
             var secretKey = Configuration["AppSettings:SecretKey"];
             var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
