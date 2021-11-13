@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyWebApiApp.Data;
+using MyWebApiApp.Models;
 using MyWebApiApp.Services;
 using System;
 using System.Collections.Generic;
@@ -43,10 +44,13 @@ namespace MyWebApiApp
             services.AddScoped<ILoaiRepository, LoaiRepositoryInMemory>();
             services.AddScoped<IHangHoaResposity, HangHoaRepository>();
 
+            services.Configure<AppSetting>(Configuration.GetSection("AppSettings"));
+
             var secretKey = Configuration["AppSettings:SecretKey"];
             var secretKeyBytes = Encoding.UTF8.GetBytes(secretKey);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -81,6 +85,8 @@ namespace MyWebApiApp
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
