@@ -39,9 +39,7 @@ namespace MyWebApiApp.Controllers
 
         [HttpPost("Login")]
         public IActionResult Validate(LoginModel model) {
-            var user = _context.Users.SingleOrDefault(p => p.user_name == model.user_name);
-            if (user.password != model.password) {
-            }
+            var user = _context.Users.SingleOrDefault(p => p.user_name == model.user_name && p.password == model.password);
             if (user == null) //không đúng
             {
                 return Ok(new ApiResponse
